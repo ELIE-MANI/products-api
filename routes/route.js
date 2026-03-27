@@ -6,10 +6,10 @@ let products =
 [
     {id:1, name:"Laptop", price:"$500"},
     {id:2, name:"Iphone 17", price:"$1,500"},
-    {id:1, name:"Ipad", price:"$700"},
-    {id:2, name:"Iphone 15", price:"$1,000"},
-    {id:1, name:"Speaker", price:"$100"},
-    {id:2, name:"Iphone 16", price:"$1,200"}
+    {id:3, name:"Ipad", price:"$700"},
+    {id:4, name:"Iphone 15", price:"$1,000"},
+    {id:5, name:"Speaker", price:"$100"},
+    {id:6, name:"Iphone 16", price:"$1,200"}
     
 ];
 //Get/products -return all
@@ -49,7 +49,7 @@ if(!product){
     return res.status(404).json({message:"Product not found"})
 }
 
-const {price} = req.body;
+const {price} = parseFloat(req.body.price.replace("$",""));
 
 if(price === undefined){
     return res.status(400).json({message:"Price is required"})
