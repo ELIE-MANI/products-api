@@ -41,3 +41,39 @@ router.post("/", (req,res) => {
    res.status(202).json(newProduct);     
     
 });
+
+//PUT products/price -update price
+router.put("/products/:id/price", (req,res) => {
+   const product = products.find(p => p.id === parseInt(req.params.id)) 
+if(!product){
+    return res.status(404).json({message:"Product not found"})
+}
+
+const {price} = req.body;
+
+if(price === undefined){
+    return res.status(400).json({message:"Price is required"})
+}
+
+if (typeof price !== "number" || price < 0){
+    res.status(400).json({message:"Price must be a positive number"})
+}
+product.price = price;
+
+res.json(product);
+})
+
+//DELETE product/:id 
+router.delete("/:id" , (req,res) => {
+    const index =products.findIndex(p => p.id === parseInt(req.params.id));
+
+    if(index === -1){
+        return res.status(404).json({message:"Product not found"});
+    }
+ 
+   products.splice(index, 1);
+   res.json({message:"Product deleted successfully"})
+
+    res.json(index)
+
+})
