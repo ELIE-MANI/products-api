@@ -76,4 +76,6 @@ router.delete("/:id" , (req,res) => {
 
     res.json(index)
 
-})
+});
+
+module.exports= router;

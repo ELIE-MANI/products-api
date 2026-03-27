@@ -1,6 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
 
+//add router 
+const productRoute = require('./routes/route')
 
 //Load environment variables
 dotenv.config();
@@ -18,6 +20,9 @@ app.get('/', (req,res) => {
         status: 'OK',
     });
 });
+
+//Added
+app.use("/products", productRoute)
 
 // start server
 app.listen(PORT, () =>{
